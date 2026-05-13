@@ -1,0 +1,325 @@
+/* =========================================================
+   منظومة اللجان الوزارية — DESIGN TOKENS
+   Burgundy-led · Lusail typeface · Mobile-inspired softness
+   ========================================================= */
+
+/* ---- Real Lusail font, locally hosted ---- */
+@font-face {
+  font-family: "Lusail";
+  src: url("fonts/Lusail-Medium.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---- BRAND PALETTE (burgundy-led, mobile-inspired) ---- */
+  /* Hero burgundy — sampled from the official logo */
+  --c-burgundy:        #7B1F3D;
+  --c-burgundy-900:    #4F1228;
+  --c-burgundy-800:    #631930;
+  --c-burgundy-700:    #6B1B36;
+  --c-burgundy-600:    #8A2547;
+  --c-burgundy-500:    #9D3158;
+  --c-burgundy-400:    #B85A7C;
+  --c-burgundy-300:    #D89AAF;
+  --c-burgundy-200:    #EDD2DB;
+  --c-burgundy-100:    #F6E4EA;
+  --c-burgundy-50:     #FBF1F4;
+  --c-burgundy-25:     #FDF7F9;
+
+  /* Supporting blue — restrained, ceremonial accent */
+  --c-blue:            #0D4261;
+  --c-blue-700:        #0A3550;
+  --c-blue-100:        #E2EAF0;
+  --c-blue-50:         #F2F6F9;
+
+  /* Gold — heraldic accent only */
+  --c-gold:            #B89B5E;
+  --c-gold-700:        #94783F;
+  --c-gold-100:        #ECE3D2;
+  --c-gold-50:         #F7F2E8;
+
+  /* Status */
+  --c-green:           #1F8A3E;
+  --c-green-100:       #DCEFE1;
+  --c-amber:           #B8860B;
+  --c-amber-100:       #F5EBC9;
+  --c-red:             #B42D2D;
+  --c-red-100:         #F5DBDB;
+
+  /* ---- NEUTRALS (warm, off-white like the mobile screens) ---- */
+  --c-bg:              #F5F1EE;       /* warm canvas */
+  --c-bg-2:            #ECE6E1;
+  --c-surface:         #FFFFFF;
+  --c-surface-soft:    #FBF8F6;       /* card-on-card */
+  --c-border:          #ECE2E0;       /* warm hairline */
+  --c-border-2:        #DDD1CD;
+  --c-ink:             #1F1A22;
+  --c-ink-2:           #4A3F46;
+  --c-ink-3:           #7B6E73;
+  --c-ink-4:           #A89DA1;
+
+  /* ---- TYPE ---- */
+  --font-display: "Lusail", "Noto Kufi Arabic", "Tajawal", "Cairo", system-ui, sans-serif;
+  --font-body:    "Lusail", "Noto Kufi Arabic", "Tajawal", "Cairo", system-ui, sans-serif;
+  --font-num:     "Lusail", "Inter", system-ui, sans-serif;
+
+  /* ---- SHAPE & ELEVATION (soft, mobile-inspired) ---- */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(75, 30, 50, 0.04);
+  --shadow-sm: 0 2px 8px rgba(75, 30, 50, 0.05);
+  --shadow-md: 0 6px 18px rgba(75, 30, 50, 0.07), 0 2px 6px rgba(75, 30, 50, 0.04);
+  --shadow-lg: 0 18px 46px rgba(75, 30, 50, 0.12), 0 6px 14px rgba(75, 30, 50, 0.06);
+  --shadow-card: 0 1px 0 rgba(123,31,61,0.04), 0 8px 24px rgba(123,31,61,0.06);
+
+  /* ---- MOTION ---- */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--c-ink);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+button { font-family: inherit; }
+
+.num, table td, table th { font-variant-numeric: tabular-nums; }
+.arabic-indic { font-feature-settings: "anum" on; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--c-border-2); border-radius: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* =========================================================
+   PRIMITIVES
+   ========================================================= */
+
+.surface {
+  background: var(--c-surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-gold) 30%, var(--c-gold) 70%, transparent);
+  border: 0;
+  opacity: 0.5;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--c-burgundy-700);
+  font-weight: 600;
+}
+
+/* Buttons — pill, soft */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 180ms var(--ease);
+  white-space: nowrap;
+  line-height: 1;
+}
+.btn-primary {
+  background: var(--c-burgundy);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(123,31,61,0.18);
+}
+.btn-primary:hover { background: var(--c-burgundy-700); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(123,31,61,0.22); }
+.btn-secondary {
+  background: var(--c-surface);
+  color: var(--c-burgundy);
+  border-color: var(--c-burgundy-200);
+}
+.btn-secondary:hover { border-color: var(--c-burgundy); background: var(--c-burgundy-50); }
+.btn-ghost { background: transparent; color: var(--c-ink-2); }
+.btn-ghost:hover { background: var(--c-burgundy-50); color: var(--c-burgundy); }
+.btn-soft {
+  background: var(--c-burgundy-100);
+  color: var(--c-burgundy-700);
+}
+.btn-soft:hover { background: var(--c-burgundy-200); }
+.btn-sm { padding: 8px 14px; font-size: 13px; }
+.btn-lg { padding: 14px 28px; font-size: 15px; }
+
+/* Pills / badges — soft tinted backgrounds (mobile DNA) */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.pill-burg    { background: var(--c-burgundy-100); color: var(--c-burgundy-700); }
+.pill-blue    { background: var(--c-blue-100);     color: var(--c-blue-700); }
+.pill-gold    { background: var(--c-gold-100);     color: var(--c-gold-700); }
+.pill-green   { background: var(--c-green-100);    color: var(--c-green); }
+.pill-amber   { background: var(--c-amber-100);    color: var(--c-amber); }
+.pill-red     { background: var(--c-red-100);      color: var(--c-red); }
+.pill-gray    { background: var(--c-bg-2);         color: var(--c-ink-2); }
+.pill-outline { background: transparent; border: 1px solid var(--c-border-2); color: var(--c-ink-2); }
+
+/* Status dot */
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.dot-green  { background: var(--c-green); }
+.dot-amber  { background: var(--c-amber); }
+.dot-red    { background: var(--c-red); }
+.dot-burg   { background: var(--c-burgundy); }
+.dot-gold   { background: var(--c-gold); }
+.dot-blue   { background: var(--c-blue); }
+.dot-live   { background: var(--c-burgundy); box-shadow: 0 0 0 4px var(--c-burgundy-100); animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--c-burgundy-100); }
+  50%      { box-shadow: 0 0 0 8px rgba(123,31,61,0.06); }
+}
+
+/* Card — soft, mobile-inspired */
+.card {
+  background: var(--c-surface);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+.card-flat {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+.card-tinted-burg { background: var(--c-burgundy-50); }
+.card-tinted-blue { background: var(--c-blue-50); }
+.card-tinted-gold { background: var(--c-gold-50); }
+
+/* Icon circle — used everywhere; matches mobile screens */
+.icon-circle {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.icon-circle-sm { width: 40px; height: 40px; }
+.icon-circle-lg { width: 72px; height: 72px; }
+.icon-circle-burg { background: var(--c-burgundy-100); color: var(--c-burgundy); }
+.icon-circle-blue { background: var(--c-blue-100);     color: var(--c-blue); }
+.icon-circle-gold { background: var(--c-gold-100);     color: var(--c-gold-700); }
+.icon-circle-green{ background: var(--c-green-100);    color: var(--c-green); }
+.icon-circle-amber{ background: var(--c-amber-100);    color: var(--c-amber); }
+.icon-circle-gray { background: var(--c-bg-2);         color: var(--c-ink-2); }
+
+/* Table */
+.gov-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+.gov-table thead th {
+  text-align: start;
+  font-weight: 500;
+  color: var(--c-ink-3);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 14px 18px;
+  background: var(--c-bg);
+  border-bottom: 1px solid var(--c-border);
+}
+.gov-table thead th:first-child { border-top-right-radius: var(--r-md); border-bottom-right-radius: 0; }
+.gov-table thead th:last-child  { border-top-left-radius: var(--r-md); }
+.gov-table tbody td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--c-border);
+  color: var(--c-ink);
+  vertical-align: middle;
+}
+.gov-table tbody tr:last-child td { border-bottom: 0; }
+.gov-table tbody tr:hover td { background: var(--c-burgundy-25); }
+
+/* Inputs — pill, like mobile */
+.input {
+  width: 100%;
+  padding: 13px 18px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-border-2);
+  background: var(--c-surface);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--c-ink);
+  transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--c-burgundy);
+  box-shadow: 0 0 0 4px var(--c-burgundy-100);
+}
+.input-soft {
+  background: var(--c-bg-2);
+  border-color: transparent;
+}
+.input-soft:focus { background: var(--c-surface); }
+
+/* Heraldic top stripe */
+.heraldic-stripe {
+  height: 3px;
+  background: linear-gradient(90deg,
+    var(--c-burgundy) 0%, var(--c-burgundy) 33.3%,
+    var(--c-gold) 33.3%, var(--c-gold) 66.6%,
+    var(--c-blue) 66.6%, var(--c-blue) 100%);
+}
+
+/* Soft progress bar */
+.bar {
+  position: relative;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--c-bg-2);
+  overflow: hidden;
+}
+.bar-fill {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--c-burgundy);
+  border-radius: inherit;
+  transition: width 360ms var(--ease);
+}
+.bar-fill-green { background: var(--c-green); }
+.bar-fill-amber { background: var(--c-amber); }
+.bar-fill-blue  { background: var(--c-blue); }
+.bar-fill-gold  { background: var(--c-gold); }
