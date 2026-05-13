@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 
 // Import useTweaks
@@ -84,7 +83,7 @@ function DemoNav({ current, onChange }) {
 }
 
 // ====================== Root ======================
-function Root() {
+function App() {
   // const [tw, setTw] = useTweaks({ lead: "blue" });
 
   const [current, setCurrent] = useState("login");
@@ -172,4 +171,4 @@ function Root() {
   );
 }
 
-export default Root;
+export default App;
