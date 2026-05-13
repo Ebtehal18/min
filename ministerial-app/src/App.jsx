@@ -11,6 +11,7 @@ import Dashboard from "./screen-dashboard";
 import CommitteesList from "./screen-list";
 import CommitteeDetail from "./screen-committee";
 import MeetingDetail from "./screen-meeting";
+import { TweakRadio, TweakSection, TweaksPanel, useTweaks } from "./tweaks-panel";
 
 // ====================== AppShell ======================
 function AppShell({ active, title, subtitle, children, lead }) {
@@ -84,7 +85,7 @@ function DemoNav({ current, onChange }) {
 
 // ====================== Root ======================
 function App() {
-  // const [tw, setTw] = useTweaks({ lead: "blue" });
+  const [tw, setTw] = useTweaks({ lead: "blue" });
 
   const [current, setCurrent] = useState("login");
 
@@ -112,38 +113,47 @@ function App() {
     return () => clearTimeout(timer);
   }, [current]);
 
-  const renderScreen = () => {
+ const renderScreen = () => {
     switch (current) {
       case "login":
-        return <Login />;
+        return <Login/>;
       case "dashboard":
         return (
-          <AppShell active="dashboard"  title="لوحة التحكم" subtitle="نظرة شاملة على مؤشرات اللجان والقرارات والاجتماعات">
-            <Dashboard />
+          <AppShell active="dashboard" lead={tw.lead}
+            title="لوحة التحكم"
+            subtitle="نظرة شاملة على مؤشرات اللجان والقرارات والاجتماعات">
+            <Dashboard/>
           </AppShell>
         );
       case "committees":
         return (
-          <AppShell active="committees"  title="اللجان الوزارية" subtitle="إدارة اللجان وربطها بقرارات التشكيل">
-            <CommitteesList />
+          <AppShell active="committees" lead={tw.lead}
+            title="اللجان الوزارية"
+            subtitle="إدارة اللجان وربطها بقرارات التشكيل">
+            <CommitteesList/>
           </AppShell>
         );
       case "committee-detail":
         return (
-          <AppShell active="committees"  title="ملف اللجنة" subtitle="التفاصيل والاختصاصات والأعضاء والقرارات">
-            <CommitteeDetail />
+          <AppShell active="committees" lead={tw.lead}
+            title="ملف اللجنة"
+            subtitle="التفاصيل والاختصاصات والأعضاء والقرارات">
+            <CommitteeDetail/>
           </AppShell>
         );
       case "meeting":
         return (
-          <AppShell active="live"  title="إدارة أعمال الاجتماع" subtitle="جلسة جارية — جدول الأعمال والحضور والتصويت اللحظي">
-            <MeetingDetail />
+          <AppShell active="live" lead={tw.lead}
+            title="إدارة أعمال الاجتماع"
+            subtitle="جلسة جارية — جدول الأعمال والحضور والتصويت اللحظي">
+            <MeetingDetail/>
           </AppShell>
         );
       default:
-        return <div>الشاشة غير موجودة</div>;
+        return null;
     }
   };
+
 
   return (
     <>
@@ -153,7 +163,7 @@ function App() {
         {renderScreen()}
       </div>
 
-      {/* <TweaksPanel title="إعدادات التصميم">
+      <TweaksPanel title="إعدادات التصميم">
         <TweakSection title="اللون القائد">
           <TweakRadio
             label="اختر اللون الأساسي للنظام"
@@ -166,7 +176,7 @@ function App() {
             ]}
           />
         </TweakSection>
-      </TweaksPanel> */}
+      </TweaksPanel>
     </>
   );
 }
